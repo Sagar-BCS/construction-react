@@ -1,0 +1,208 @@
+/* ============================================================
+   Global Styles — Construction React App
+   Custom CSS to supplement Bootstrap
+   ============================================================ */
+
+/* ─── CSS Variables (Theming) ─────────────────────────────────── */
+:root {
+  --sidebar-width: 240px;
+  --sidebar-collapsed-width: 60px;
+  --navbar-height: 56px;
+  --transition-speed: 0.3s;
+}
+
+/* ─── Base Styles ─────────────────────────────────────────────── */
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  overflow: hidden; /* Prevent body scroll — content scrolls inside main */
+}
+
+/* ─── Sidebar Styles ──────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-width);
+  min-height: calc(100vh - var(--navbar-height));
+  transition: width var(--transition-speed) ease;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
+  flex-shrink: 0;
+  z-index: 1040;
+}
+
+.sidebar-closed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.sidebar-open {
+  width: var(--sidebar-width);
+}
+
+/* Sidebar navigation links */
+.sidebar-link {
+  padding: 0.6rem 0.8rem;
+  border: none;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  transform: translateX(3px);
+}
+
+.sidebar-link.active {
+  font-weight: 600;
+}
+
+/* Sidebar backdrop for mobile */
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1035;
+}
+
+/* ─── Main Content Area ───────────────────────────────────────── */
+.main-content {
+  transition: margin-left var(--transition-speed) ease;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+/* ─── Login Page Styles ───────────────────────────────────────── */
+.login-page {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
+}
+
+.login-page .card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.login-page .card-header {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%) !important;
+}
+
+.login-page .btn-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.login-page .btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+}
+
+/* ─── Card Enhancements ──────────────────────────────────────── */
+.card {
+  border-radius: 10px;
+  transition: box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+}
+
+.card-header {
+  border-radius: 10px 10px 0 0 !important;
+}
+
+/* ─── Table Enhancements ─────────────────────────────────────── */
+.table th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6c757d;
+  font-weight: 600;
+}
+
+.table td {
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+/* ─── Badge Enhancements ─────────────────────────────────────── */
+.badge-sm {
+  font-size: 0.7rem;
+  padding: 0.2em 0.5em;
+}
+
+/* ─── Form Enhancements ──────────────────────────────────────── */
+.form-control:focus,
+.form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+/* ─── Scrollbar Styling ──────────────────────────────────────── */
+.main-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.main-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 3px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: #a0aec0;
+}
+
+/* Sidebar scrollbar */
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* ─── Animations ─────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-page,
+.expenses-page {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ─── Responsive Overrides ───────────────────────────────────── */
+@media (max-width: 767.98px) {
+  .sidebar {
+    position: fixed;
+    top: var(--navbar-height);
+    left: 0;
+    height: calc(100vh - var(--navbar-height));
+    transform: translateX(-100%);
+    transition: transform var(--transition-speed) ease;
+  }
+
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+    width: var(--sidebar-width);
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+  }
+}
